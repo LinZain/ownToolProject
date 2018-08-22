@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class MapTest {
     public static void main(String[] args) {
-        Map<Integer, String> map = new HashMap<>();
+        Map<Integer, String> map = new HashMap<Integer, String>();
         map.put(1, "111");
         map.put(2, "222");
         map.put(3, "333");
         map.put(4, "444");
-        Map<Integer, String> map2 = new HashMap<>();
+        Map<Integer, String> map2 = new HashMap<Integer, String>();
         map2.put(5, "555");
         map2.put(6, "666");
         map2.put(7, "777");
@@ -25,7 +25,7 @@ public class MapTest {
         for (Integer key : map.keySet()) {
             String s = map2.get(key);
             if (null == s) {
-                System.out.println("²»Æ¥Åä,map1 key=" + key);
+                System.out.println("ï¿½ï¿½Æ¥ï¿½ï¿½,map1 key=" + key);
                 continue;
             }
             System.out.println("map1 value=" + map.get(key) + " map2 value=" + s);

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class list {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<Integer>();
         
     }
 }

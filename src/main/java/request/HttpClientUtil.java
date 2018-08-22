@@ -1,73 +1,73 @@
-package request;  
-  
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.log4j.Logger;
-
-import net.sf.json.JSONObject;  
-  
-  
-public class HttpClientUtil {  
-      
-    /** 
-     * POST·½Ê½µ÷ÓÃ 
-     *  
-     * @param url 
-     * @param params ²ÎÊýÎªNameValuePair¼üÖµ¶Ô¶ÔÏó 
-     * @return ÏìÓ¦×Ö·û´® 
-     * @throws java.io.UnsupportedEncodingException 
-     */  
-    public void executeByPOST(String URL, JSONObject json) {  
-        try{
-        URL url = new URL(URL); 
-        HttpURLConnection connection = (HttpURLConnection) url 
-                .openConnection(); 
-        connection.setDoOutput(true); 
-        connection.setDoInput(true); 
-        connection.setRequestMethod("POST"); //ÉèÖÃÇëÇó·½·¨
-        connection.setRequestProperty("Charsert", "UTF-8"); //ÉèÖÃÇëÇó±àÂë
-        connection.setUseCaches(false); 
-        connection.setInstanceFollowRedirects(true); 
-        connection.setRequestProperty("Content-Type", 
-                "application/json"); 
-
-        connection.connect(); 
-
-        //POSTÇëÇó 
-        DataOutputStream out = new DataOutputStream( 
-                connection.getOutputStream()); //¹Ø¼üµÄÒ»²½
-
-
-        out.writeBytes(json.toString()); 
-        out.flush(); 
-        out.close(); 
-
-        // ¶ÁÈ¡ÏìÓ¦
-        if (connection.getResponseCode()==200) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String lines;
-            StringBuffer sb = new StringBuffer("");
-            while ((lines = reader.readLine()) != null) {
-                lines = new String(lines.getBytes(), "utf-8");
-                sb.append(lines);
-            }
-            System.out.println(sb.toString());
-            reader.close();
-        }
-        connection.disconnect();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    } 
-    
-    public void postRequest(){
-        
-    }
-      
-}  
+//package request;
+//
+//import java.io.BufferedReader;
+//import java.io.DataOutputStream;
+//import java.io.InputStreamReader;
+//import java.net.HttpURLConnection;
+//import java.net.URL;
+//
+//import org.apache.http.impl.client.CloseableHttpClient;
+//import org.apache.http.impl.client.HttpClients;
+//import org.apache.log4j.Logger;
+//
+//import net.sf.json.JSONObject;
+//
+//
+//public class HttpClientUtil {
+//
+//    /**
+//     * POSTï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+//     *
+//     * @param url
+//     * @param params ï¿½ï¿½ï¿½ï¿½ÎªNameValuePairï¿½ï¿½Öµï¿½Ô¶ï¿½ï¿½ï¿½
+//     * @return ï¿½ï¿½Ó¦ï¿½Ö·ï¿½ï¿½ï¿½
+//     * @throws java.io.UnsupportedEncodingException
+//     */
+//    public void executeByPOST(String URL, JSONObject json) {
+//        try{
+//        URL url = new URL(URL);
+//        HttpURLConnection connection = (HttpURLConnection) url
+//                .openConnection();
+//        connection.setDoOutput(true);
+//        connection.setDoInput(true);
+//        connection.setRequestMethod("POST"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó·½·ï¿½
+//        connection.setRequestProperty("Charsert", "UTF-8"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//        connection.setUseCaches(false);
+//        connection.setInstanceFollowRedirects(true);
+//        connection.setRequestProperty("Content-Type",
+//                "application/json");
+//
+//        connection.connect();
+//
+//        //POSTï¿½ï¿½ï¿½ï¿½
+//        DataOutputStream out = new DataOutputStream(
+//                connection.getOutputStream()); //ï¿½Ø¼ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
+//
+//
+//        out.writeBytes(json.toString());
+//        out.flush();
+//        out.close();
+//
+//        // ï¿½ï¿½È¡ï¿½ï¿½Ó¦
+//        if (connection.getResponseCode()==200) {
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//            String lines;
+//            StringBuffer sb = new StringBuffer("");
+//            while ((lines = reader.readLine()) != null) {
+//                lines = new String(lines.getBytes(), "utf-8");
+//                sb.append(lines);
+//            }
+//            System.out.println(sb.toString());
+//            reader.close();
+//        }
+//        connection.disconnect();
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void postRequest(){
+//
+//    }
+//
+//}

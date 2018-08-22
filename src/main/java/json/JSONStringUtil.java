@@ -4,23 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-
-import net.sf.json.JSONObject;
 
 public class JSONStringUtil {
 	@Test
 	public void PBGORequestJson(){
-        JSONObject json = new JSONObject();
-		json.put("funcNum", "210001");
-		json.put("operCode", "1");
-		json.put("operPswd", "123456");
-		json.put("operStation", "0.0.0.0");
-		
-		List<String> paramList2 = new ArrayList<String>();
-		paramList2.add("xshg");
-		paramList2.add("600001");
-		json.put("paramList", paramList2);
+
+        WfNodeAttr attr = new WfNodeAttr();
+        attr.setAttrId(1l);
+        attr.setFieldsetId(1l);
+
+		JSONObject json = JSON.parseObject(attr.toJsonStringExtAttrExp());
 		System.out.println(json.toString());
 	}
 }	

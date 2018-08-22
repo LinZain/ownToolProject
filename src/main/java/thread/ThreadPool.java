@@ -44,7 +44,6 @@ class TestThread implements Runnable {
         this.prefix = prefix;
     }
 
-    @Override
     public void run() {
         int i = 0;
         boolean result = true;

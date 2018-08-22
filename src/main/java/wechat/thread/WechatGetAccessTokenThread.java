@@ -1,6 +1,6 @@
 package wechat.thread;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import wechat.util.WechatConstants;
 import wechat.util.WechatHttpReq;
 
@@ -8,27 +8,27 @@ public class WechatGetAccessTokenThread extends Thread {
 
     @Override
     public void run() {
-        while (true) {
-            StringBuffer urlStr = new StringBuffer();
-            urlStr.append("https://api.weixin.qq.com/cgi-bin/token?").append(getReqParam());
-            String result = WechatHttpReq.get(urlStr.toString());
-            JSONObject json = JSONObject.fromObject(result);
-            if (json.containsKey("access_token")) {
-                WechatConstants.ACCESS_TOKEN = (String) json.get("access_token");
-                WechatConstants.EXPIRES_IN = (int) json.get("expires_in");
-                System.out.println("ÐÂaccess_token:"+WechatConstants.ACCESS_TOKEN);
-            }
-            try {
-                if (WechatConstants.EXPIRES_IN != 0) {
-                    Thread.sleep(WechatConstants.EXPIRES_IN * 1000);
-                }
-                else{
-                    Thread.sleep(30 * 1000);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        while (true) {
+//            StringBuffer urlStr = new StringBuffer();
+//            urlStr.append("https://api.weixin.qq.com/cgi-bin/token?").append(getReqParam());
+//            String result = WechatHttpReq.get(urlStr.toString());
+//            JSONObject json = JSONObject.fromObject(result);
+//            if (json.containsKey("access_token")) {
+//                WechatConstants.ACCESS_TOKEN = (String) json.get("access_token");
+//                WechatConstants.EXPIRES_IN = (int) json.get("expires_in");
+//                System.out.println("ï¿½ï¿½access_token:"+WechatConstants.ACCESS_TOKEN);
+//            }
+//            try {
+//                if (WechatConstants.EXPIRES_IN != 0) {
+//                    Thread.sleep(WechatConstants.EXPIRES_IN * 1000);
+//                }
+//                else{
+//                    Thread.sleep(30 * 1000);
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
     }
 

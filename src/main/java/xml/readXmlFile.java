@@ -134,7 +134,7 @@ public class readXmlFile {
         map.put(key.toString(), responseMsg.toString());
     }
     public static void paramValues(String body){
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<String, String>();
         String[] subStr = body.split("\1");
         for (String sub : subStr) {
             String[] split = sub.split("=");
