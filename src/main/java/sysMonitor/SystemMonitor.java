@@ -16,7 +16,7 @@ import com.sun.management.OperatingSystemMXBean;
 
 
 /**
- * ×÷Õß£ºlinzp ÏîÄ¿£ºsims-mid-front-ngt-http ËµÃ÷£ºÏµÍ³¼à¿ØĞÅÏ¢ ÈÕÆÚ£º2017Äê8ÔÂ31ÈÕ ±¸×¢£º
+ * ä½œè€…ï¼šlinzp é¡¹ç›®ï¼šsims-mid-front-ngt-http è¯´æ˜ï¼šç³»ç»Ÿç›‘æ§ä¿¡æ¯ æ—¥æœŸï¼š2017å¹´8æœˆ31æ—¥ å¤‡æ³¨ï¼š
  */
 public class SystemMonitor {
 
@@ -25,7 +25,7 @@ public class SystemMonitor {
 	private static String pid = "";
 
 	/**
-	 * windows»·¾³ÏÂ»ñÈ¡JVMµÄPID
+	 * windowsç¯å¢ƒä¸‹è·å–JVMçš„PID
 	 */
 	private static void getJvmPIDOnWindows() {
 		RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
@@ -34,8 +34,8 @@ public class SystemMonitor {
 
 
 	/**
-	 * »ñÈ¡windows»·¾³ÏÂjvmµÄÄÚ´æÕ¼ÓÃÂÊ
-	 * 
+	 * è·å–windowsç¯å¢ƒä¸‹jvmçš„å†…å­˜å ç”¨ç‡
+	 *
 	 * @return
 	 */
 
@@ -44,7 +44,7 @@ public class SystemMonitor {
 			getJvmPIDOnWindows();
 		}
 		String command = "TASKLIST /NH /FO CSV /FI \"PID EQ " + pid + " \"";
-		String remCount = ""; // jvmÎïÀíÄÚ´æÕ¼ÓÃÁ¿
+		String remCount = ""; // jvmç‰©ç†å†…å­˜å ç”¨é‡
 		BufferedReader in = null;
 		double result = 0;
 		try {
@@ -59,17 +59,17 @@ public class SystemMonitor {
 					remCount = ts.nextToken().replace(",", "").replace("K", "").trim();
 				}
 			}
-			double physicalJvmMem = Long.parseLong(remCount) / 1024; // jvmÎïÀíÄÚ´æÕ¼ÓÃÁ¿(MB)
+			double physicalJvmMem = Long.parseLong(remCount) / 1024; // jvmç‰©ç†å†…å­˜å ç”¨é‡(MB)
 			OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-			double physicalTotal = osmxb.getTotalPhysicalMemorySize() / (1024 * 1024); // »ñÈ¡·şÎñÆ÷×ÜÎïÀíÄÚ´æ(MB)
-			
+			double physicalTotal = osmxb.getTotalPhysicalMemorySize() / (1024 * 1024); // è·å–æœåŠ¡å™¨æ€»ç‰©ç†å†…å­˜(MB)
+
 			result = physicalJvmMem / physicalTotal * PERCENT;
 			BigDecimal bg = new BigDecimal(result);
 			result = bg.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
-			
+
 			in.close();
 			pro.destroy();
-			
+
 			return String.valueOf(result);
 		} catch (Exception e) {
 			return "0.0";
@@ -94,7 +94,7 @@ public class SystemMonitor {
 			double result = (((cpuEndTime - cpuStartTime) / 1000000.0) / (upTime2 - upTime)) * PERCENT;
 			BigDecimal bg = new BigDecimal(result);
 			result = bg.setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
-			
+
 			return String.valueOf(result);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -103,8 +103,8 @@ public class SystemMonitor {
 	}
 
 	/**
-	 * »ñÈ¡ÔËĞĞÊ±³¤
-	 * 
+	 * è·å–è¿è¡Œæ—¶é•¿
+	 *
 	 * @return
 	 */
 	public static String getRunningTime(long startTime) {
@@ -127,7 +127,7 @@ public class SystemMonitor {
 			day = (int) hour / 24;
 			hour = hour % 24;
 		}
-		String result = day + "Ìì" + hour + "Ê±" + minute + "·Ö" + second + "Ãë";
+		String result = day + "å¤©" + hour + "æ—¶" + minute + "åˆ†" + second + "ç§’";
 		return result;
 	}
 
