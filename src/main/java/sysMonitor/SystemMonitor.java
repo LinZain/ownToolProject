@@ -12,7 +12,7 @@ import java.text.NumberFormat;
 import java.util.Formatter;
 import java.util.StringTokenizer;
 import com.sun.management.OperatingSystemMXBean;
-
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -40,7 +40,7 @@ public class SystemMonitor {
 	 */
 
 	public static String getMemoryRateForWindows() {
-		if (pid == null || pid.isEmpty()) {
+		if (pid == null || !StringUtils.isNotBlank(pid)) {
 			getJvmPIDOnWindows();
 		}
 		String command = "TASKLIST /NH /FO CSV /FI \"PID EQ " + pid + " \"";
